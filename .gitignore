@@ -167,3 +167,8 @@ hs_err_pid*
 .history
 
 # End of https://www.toptal.com/developers/gitignore/api/java,angular,intellij,visualstudiocode
+client-api-rest/.mvn/
+
+client-api-rest/mvnw
+
+client-api-rest/mvnw.cmd
