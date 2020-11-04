@@ -6,7 +6,7 @@ import { Client } from './client';
 @Injectable()
 export class ClientService {
 
-  private endpoint: string = 'http://localhost:8080/api/clients';
+  private endpoint = 'http://localhost:8080/api/clients';
 
   constructor(private http: HttpClient) { }
 
