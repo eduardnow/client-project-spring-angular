@@ -2,26 +2,31 @@ package com.company.model.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
-@Table(name="clients")
+@Table(name = "clients")
 public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private String firstName;
 
     private String lastName;
 
     private String email;
 
+    @Column(name = "created_at")
+    @Temporal(TemporalType.DATE)
     private Date createdAt;
 
     public Client() {
+    }
+
+    public Client(Long id) {
+        this.id = id;
     }
 
     public Client(Long id, String firstName, String lastName, String email, Date createdAt) {
@@ -70,5 +75,10 @@ public class Client implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = new Date();
     }
 }
