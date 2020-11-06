@@ -34,4 +34,10 @@ export class ClientService {
     });
   }
 
+  delete(id: number) {
+    return this.http.delete<Client>(`${this.endpoint}/${id}`, {
+      headers: this.headers
+    });
+  }
+
 }

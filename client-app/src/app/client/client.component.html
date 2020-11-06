@@ -32,6 +32,10 @@
               <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clients/edit', client.id]">
                 Edit
               </button>
+
+              <button class="btn btn-rounded btn-danger" type="button" (click)="delete(client)">
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>
