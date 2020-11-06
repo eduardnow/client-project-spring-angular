@@ -2,8 +2,13 @@
   <div class="card-header">
     Clients
   </div>
-  <div class="card-body">
-    <h5 class="card-title">List</h5>
+  <div class="card-body text-primary">
+    <h5 class="card-title">List of clients</h5>
+    <div class="my-2 text-left">
+      <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clients/create']">
+        New Client
+      </button>
+    </div>
     <div class="table-responsive">
       <table class="table">
         <thead>
@@ -13,6 +18,7 @@
             <th scope="col">Lastname</th>
             <th scope="col">Email</th>
             <th scope="col">Created At</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +28,11 @@
             <td>{{ client.lastName }}</td>
             <td>{{ client.email }}</td>
             <td>{{ client.createdAt }}</td>
+            <td>
+              <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clients/edit', client.id]">
+                Edit
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
