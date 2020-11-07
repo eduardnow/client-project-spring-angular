@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import { Client } from './client';
+import {catchError} from 'rxjs/operators';
+import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class ClientService {
@@ -12,7 +15,7 @@ export class ClientService {
     'Content-Type': 'application/json'
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   all(): Observable<Client[]> {
     return this.http.get<Client[]>(this.endpoint);
@@ -25,7 +28,11 @@ export class ClientService {
   }
 
   findById(id: number): Observable<Client> {
-    return this.http.get<Client>(`${this.endpoint}/${id}`);
+    return this.http.get<Client>(`${this.endpoint}/${id}`).pipe(catchError(err => {
+      this.router.navigate(['/clients']);
+      Swal.fire('Error', err.message, 'error');
+      return throwError(err);
+    }));
   }
 
   update(client: Client): Observable<Client> {
