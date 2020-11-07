@@ -9,35 +9,40 @@
         New Client
       </button>
     </div>
+
+    <div *ngIf="clients?.length == 0" class="alert alert-info" role="alert">
+      There are no customer records
+    </div>
+
     <div class="table-responsive">
-      <table class="table">
+      <table class="table table-bordered table-striped" *ngIf="clients?.length > 0">
         <thead>
-          <tr>
-            <th scope="col">id</th>
-            <th scope="col">firstname</th>
-            <th scope="col">Lastname</th>
-            <th scope="col">Email</th>
-            <th scope="col">Created At</th>
-            <th>Actions</th>
-          </tr>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">firstname</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">Email</th>
+          <th scope="col">Created At</th>
+          <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let client of clients">
-            <th scope="row">{{ client.id }}</th>
-            <td>{{ client.firstName }}</td>
-            <td>{{ client.lastName }}</td>
-            <td>{{ client.email }}</td>
-            <td>{{ client.createdAt }}</td>
-            <td>
-              <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clients/edit', client.id]">
-                Edit
-              </button>
+        <tr *ngFor="let client of clients">
+          <th scope="row">{{ client.id }}</th>
+          <td>{{ client.firstName }}</td>
+          <td>{{ client.lastName }}</td>
+          <td>{{ client.email }}</td>
+          <td>{{ client.createdAt }}</td>
+          <td>
+            <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clients/edit', client.id]">
+              Edit
+            </button>
 
-              <button class="btn btn-rounded btn-danger" type="button" (click)="delete(client)">
-                Delete
-              </button>
-            </td>
-          </tr>
+            <button class="btn btn-rounded btn-danger" type="button" (click)="delete(client)">
+              Delete
+            </button>
+          </td>
+        </tr>
         </tbody>
       </table>
     </div>
